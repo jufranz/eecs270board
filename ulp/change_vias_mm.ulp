@@ -1,0 +1,37 @@
+real old;
+real new;
+int Result = dlgDialog("Enter Parameters") {
+  dlgHBoxLayout {
+    dlgLabel("Change vias from:");
+    dlgSpacing(23);
+    dlgRealEdit(old);
+    dlgLabel("mm");
+    }
+  dlgHBoxLayout {
+    dlgLabel("to:");
+    dlgSpacing(120);
+    dlgRealEdit(new);
+    dlgLabel("mm");
+    }
+  dlgHBoxLayout {
+    dlgStretch(1);
+    dlgPushButton("+OK")    dlgAccept();
+    dlgPushButton("Cancel") dlgReject();
+    }
+  };
+
+output("/tmp/change_vias.scr") {
+if (board)
+board(B) {
+  B.signals(S) {
+    S.vias(V) {
+      if(u2mm(V.drill) == old) {
+        printf("CHANGE DRILL %f (%f %f)\n",
+          new, u2mm(V.x), u2mm(V.y));
+      } 
+    }
+  }
+}
+}
+
+exit("SCRIPT /tmp/change_vias.scr");

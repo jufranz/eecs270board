@@ -1,0 +1,24 @@
+#usage "Set the >TP_SIGNAL_NAME variable for all test points\n"
+"Usage: RUN change-width.ulp [old_width] [new_width]"
+if(argc != 3) {
+    dlgMessageBox("Error: Invalid number of arguments");
+    exit(-1);
+}
+int old_width = mm2u(strtod(argv[1]));
+real new_width = strtod(argv[2]);
+output("/tmp/change-width.scr") {
+    if(board) {
+        board(B) {
+            B.signals(S) {
+                S.wires(W) {
+                    if(W.width == old_width) {
+                        int x = (W.x1 + W.x2) / 2;
+                        int y = (W.y1 + W.y2) / 2;
+                        printf("change width %f (%f %f);\n", new_width, u2mm(x), u2mm(y));
+                    }
+                }
+            }
+        }
+    }
+}
+exit("script /tmp/change-width.scr");

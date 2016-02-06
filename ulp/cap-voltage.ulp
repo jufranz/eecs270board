@@ -1,0 +1,23 @@
+#usage "Sets the VOLTAGE attribute for every cap based on net class. If attached to default class, voltage is not set. Very quick and dirty right now...\n"
+"Usage: RUN cap-voltage.ulp"
+output("/tmp/cap-voltage.scr") {
+  if(schematic) {
+    schematic(SCH) {
+      SCH.sheets(SH) {
+        printf("edit .s%d;\n", SH.number);
+        SH.nets(N) {
+          if(N.class.name != "GND" && N.class.name != "default") {
+            N.segments(SEG) {
+              SEG.pinrefs(PR) {
+                if(PR.part.device.prefix == "C") {
+                  printf("attr %s VOLTAGE '%s';\n", PR.part.name, N.class.name);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+exit("script /tmp/cap-voltage.scr");

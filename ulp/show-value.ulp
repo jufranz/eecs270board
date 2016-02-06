@@ -1,0 +1,21 @@
+#usage "highlights all parts with the given value, and optionally package\n"
+"Usage: RUN show-value.ulp [value] [package]"
+output("/tmp/show-value.scr") {
+  if(board) {
+    printf("show ");
+    board(B) {
+      B.elements(E) {
+        if(E.value == argv[1]) {
+          if(argc == 3) {
+            if(E.package.name == argv[2]) {
+              printf("%s ", E.name);
+            }
+          } else {
+            printf("%s ", E.name);
+          }
+        }
+      }
+    }
+  }
+}
+exit("script /tmp/show-value.scr");

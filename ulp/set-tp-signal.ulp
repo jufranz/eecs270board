@@ -1,0 +1,18 @@
+#usage "Set the >TP_SIGNAL_NAME variable for all test points\n"
+"Usage: RUN set-tp-signal.ulp"
+output("/tmp/set-tp-signal.scr") {
+    if(schematic) {
+        schematic(S) {
+            S.parts(P) {
+                if(P.device.prefix == "TP") {
+                    P.instances(I) {
+                        I.gate.symbol.pins(PN) {
+                            printf("attr %s TP_SIGNAL_NAME '%s';\n", P.name, PN.net);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+exit("script /tmp/set-tp-signal.scr");

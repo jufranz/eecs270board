@@ -1,0 +1,101 @@
+BRD:
+Grid mm 1 on;
+Grid alt mm 0.1;
+Change Font vector;
+Change ratio 15;
+Change width 0.12;
+Change size 0.8;
+Change Font proportional;
+Assign M+1 'Edit .sch';
+Assign M+2 'Route';
+Assign SM+1 'layer top';
+Assign SM+2 'layer bottom';
+Assign M+3 'Move';
+Assign M+4 'Ripup';
+Assign SM+4 'Delete';
+Assign M+5 'Copy';
+Assign M+6 'Split';
+Assign M+D 'DRC';
+Assign M+E 'Info';
+Assign M+I 'Info';
+Assign M+G 'Group';
+Assign M+R 'rat';
+Assign SM+R 'ripup @;';
+Assign M+F 'show';
+Assign SM+F 'window fit';
+Assign M+A 'display top bottom pads vias unrouted dimension tplace bplace torigins borigins tnames bnames tkeepout bkeepout trestrict brestrict -tdocu -bdocu -ttest -btest';
+Assign SM+A 'display top bottom pads vias unrouted dimension tplace bplace torigins borigins -tnames -bnames tkeepout bkeepout trestrict brestrict -tdocu -bdocu -ttest -btest';
+Assign M+T 'display top -bottom pads vias unrouted dimension tplace -bplace torigins -borigins tnames -bnames tkeepout -bkeepout trestrict -brestrict -tdocu -bdocu -ttest -btest';
+Assign SM+T 'display top -bottom pads vias unrouted dimension tplace -bplace torigins -borigins -tnames -bnames tkeepout -bkeepout trestrict -brestrict -tdocu -bdocu -ttest -btest';
+Assign M+B 'display -top bottom pads vias unrouted dimension -tplace bplace -torigins borigins -tnames bnames -tkeepout bkeepout -trestrict brestrict -tdocu -bdocu -ttest -btest';
+Assign SM+B 'display -top bottom pads vias unrouted dimension -tplace bplace -torigins borigins -tnames -bnames -tkeepout bkeepout -trestrict brestrict -tdocu -bdocu -ttest -btest';
+Assign SM+T 'display none; display dimension ttest btest';
+Set Width_Menu 0.15 0.2 0.25 0.3 0.35 0.4 0.6 0.8 1;
+
+SCH:
+Grid Default on;
+Change Width 0.006;
+Assign M+1 'edit .brd';
+Assign M+2 'Net';
+Assign M+3 'Move';
+Assign M+4 'Delete';
+Assign M+5 'Copy';
+Assign M+6 'Split';
+Assign M+G 'Group';
+Assign M+E 'Info';
+Assign M+I 'Info';
+Assign M+F 'show';
+Assign SM+F 'window fit';
+Assign M+L 'change xref on; change size 0.05; Label';
+
+DEV:
+Assign M+3 'Move';
+Assign M+4 'Delete';
+Assign M+5 'Copy';
+Assign M+G 'Group';
+Assign M+E 'Info';
+Assign M+I 'Info';
+Assign M+F 'show';
+Assign SM+F 'window fit';
+
+SYM:
+Grid Default on;
+Change Width 0.010;
+Change Font proportional;
+Change size 0.07;
+Assign SM+1 'change layer names; text >NAME MR180';
+Assign SM+2 'change layer values; text >VALUE R0';
+Assign M+2 'change layer symbol; Wire';
+Assign M+3 'Move';
+Assign M+4 'Delete';
+Assign M+5 'Copy';
+Assign M+G 'Group';
+Assign M+E 'Info';
+Assign M+I 'Info';
+Assign M+F 'show';
+Assign SM+F 'window fit';
+
+PAC:
+Grid mm 1 on;
+Grid alt mm 0.1;
+Change Font vector;
+Change ratio 15;
+Change width 0.12;
+Change size 0.8;
+Assign SM+1 'change align bottom-left; change layer tnames; text >NAME';
+Assign SM+2 'change align center; change layer ttest; text >NAME';
+Assign M+3 'Move';
+Assign M+4 'Delete';
+Assign M+5 'Copy';
+Assign M+G 'Group';
+Assign M+E 'Info';
+Assign M+I 'Info';
+Assign M+F 'show';
+Assign SM+F 'window fit';
+Assign M+A 'display top bottom pads vias unrouted dimension tplace bplace torigins borigins tnames bnames tkeepout bkeepout trestrict brestrict -tdocu -bdocu -ttest -btest';
+Assign SM+A 'display top bottom pads vias unrouted dimension tplace bplace torigins borigins -tnames -bnames tkeepout bkeepout trestrict brestrict -tdocu -bdocu -ttest -btest';
+Assign M+T 'display top -bottom pads vias unrouted dimension tplace -bplace torigins -borigins tnames -bnames tkeepout -bkeepout trestrict -brestrict -tdocu -bdocu -ttest -btest';
+Assign SM+T 'display top -bottom pads vias unrouted dimension tplace -bplace torigins -borigins -tnames -bnames tkeepout -bkeepout trestrict -brestrict -tdocu -bdocu -ttest -btest';
+Assign M+B 'display -top bottom pads vias unrouted dimension -tplace bplace -torigins borigins -tnames bnames -tkeepout bkeepout -trestrict brestrict -tdocu -bdocu -ttest -btest';
+Assign SM+B 'display -top bottom pads vias unrouted dimension -tplace bplace -torigins borigins -tnames -bnames -tkeepout bkeepout -trestrict brestrict -tdocu -bdocu -ttest -btest';
+Assign SM+T 'display none; display dimension ttest btest';

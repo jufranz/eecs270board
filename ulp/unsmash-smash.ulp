@@ -1,0 +1,46 @@
+#usage "Unsmash and smash all parts and save their locations\n"
+"Usage: RUN unsmash-smash.ulp"
+// Statements:
+string AlignName[];
+AlignName[ALIGN_BOTTOM_LEFT]   = "BOTTOM LEFT";
+AlignName[ALIGN_BOTTOM_CENTER] = "BOTTOM CENTER";
+AlignName[ALIGN_BOTTOM_RIGHT]  = "BOTTOM RIGHT";
+AlignName[ALIGN_CENTER_LEFT]   = "CENTER LEFT";
+AlignName[ALIGN_CENTER]        = "CENTER CENTER";
+AlignName[ALIGN_CENTER_RIGHT]  = "CENTER RIGHT";
+AlignName[ALIGN_TOP_LEFT]      = "TOP LEFT";
+AlignName[ALIGN_TOP_CENTER]    = "TOP CENTER";
+AlignName[ALIGN_TOP_RIGHT]     = "TOP RIGHT";
+output("/tmp/unsmash-smash.scr") {
+    if(board) {
+        board(B) {
+            B.elements(E) {
+                E.texts(T) {
+                    if(T.layer == 25 || T.layer == 26) {
+                        real part_x = u2mm(E.x);
+                        real part_y = u2mm(E.y);
+                        real text_x = u2mm(T.x);
+                        real text_y = u2mm(T.y);
+                        real angle = T.angle;
+                        string spin = "";
+                        if(T.spin) {
+                            spin = "S";
+                        }
+                        string align = AlignName[T.align];
+                        printf("smash (S %f %f)\n", part_x, part_y);
+                        printf("smash (%f %f)\n", part_x, part_y);
+                        printf("move %s>NAME (%f %f)\n", E.name, text_x, text_y);
+                        printf("rotate =%sR%f %s>NAME\n", spin, angle, E.name);
+                        printf("change align %s (%f %f)\n", align, text_x, text_y);
+                        printf("change size %f (%f %f)\n", u2mm(T.size), text_x, text_y);
+                        printf("change ratio %d (%f %f)\n", T.ratio, text_x, text_y);
+                        if(T.mirror) {
+                            printf("mirror (%f %f)\n", text_x, text_y);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+exit("script /tmp/unsmash-smash.scr");

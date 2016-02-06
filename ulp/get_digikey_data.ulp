@@ -1,0 +1,58 @@
+#usage "Add DIST_NAME, DIST_PN, MFG_NAME, MFG_PN to part from digikey URL"
+"Usage: RUN get_digikey_data.ulp [url] [unique_substring_in_file_path]"
+
+string url = "";
+if(library) {
+    library(L) {
+        switch(argc) {
+            case 1:
+                // TODO: show url dialog 
+                dlgMessageBox("Error: please provide digikey url (TODO: show url dialog)");
+                exit(-1);
+                break;
+            case 2:
+            case 3:
+                url = argv[1];
+                break;
+            default:
+                dlgMessageBox("Error: Invalid number of arguments");
+                exit(-1);
+        }
+    }
+
+    //LOGIC TO PARSE PYTHON DIRECTORY
+    int desired_dir = 0;
+      //if third argument, find path that contains substring
+      if(argc > 2){
+      for(int i = 0; strlen(path_ulp[i]) > 0; i++){
+        if(strstr(path_ulp[i], argv[2]) != -1){
+          desired_dir = i;
+          break;
+        }
+      }
+    }
+
+    string base_dir = filedir(path_ulp[desired_dir]);
+    string python_dir = base_dir + "python/get_digikey_data.py";
+
+    string cmd_string = "python \"" + python_dir + "\" " + url + " 2> /tmp/err.txt";
+    //dlgMessageBox(cmd_string);
+    if(system(cmd_string) != 0) {
+        dlgMessageBox("uh oh");
+        exit(-1);
+    }
+}
+
+if(schematic) {
+    schematic(S) {
+
+    }
+}
+
+if(board) {
+    board(B) {
+
+    }
+}
+
+exit("scr /tmp/get_digikey_data.scr");
